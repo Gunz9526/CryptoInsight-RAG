@@ -4,7 +4,7 @@ class StockSystemClient:
     """
     주식 트레이딩 시스템이랑 통신하는 클라이언트
     """
-    def __init__(self, base_url: str = "http://host.docker.internal:8000"):
+    def __init__(self, base_url: str = "http://localhost:8000"): # http://host.docker.internal:8000
         self.base_url = base_url
         self.timeout = httpx.Timeout(10.0, read=20.0)
 
