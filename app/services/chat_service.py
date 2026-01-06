@@ -2,7 +2,7 @@ import logging
 from typing import List
 
 from sqlalchemy.ext.asyncio import AsyncSession
-from langchain.google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
