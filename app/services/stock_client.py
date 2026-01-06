@@ -15,7 +15,7 @@ class StockSystemClient:
         async with httpx.AsyncClient() as client:
             try:
                 response = await client.get(
-                    f"{self.base_url}/ohlcv/{symbol}",
+                    f"{self.base_url}/api/v1/rag/ohlcv/{symbol}",
                     params={"days": days},
                     timeout=self.timeout
                     )
@@ -41,7 +41,7 @@ class StockSystemClient:
         async with httpx.AsyncClient() as client:
             try:
                 response = await client.get(
-                    f"{self.base_url}/fundamentals/{symbol}",
+                    f"{self.base_url}/api/v1/rag/fundamentals/{symbol}",
                     timeout=self.timeout
                 )
                 if response.status_code == 200:
