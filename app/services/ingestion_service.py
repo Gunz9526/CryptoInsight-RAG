@@ -6,7 +6,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 from app.core.config import settings
-from app.models.document import Document
+from app.models.document import Document as DBDocument
 
 logger = logging.getLogger(__name__)
 
@@ -30,19 +30,19 @@ class IngestionService:
         데이터 수집 및 저장
         """
         try:
-            raw_document = LangchainDocument(page_content=content, metadata={"title": title})
-            chunks: List[LangchainDocument] = self.text_splitter.split_documents([raw_document])
+            raw_document = Document(page_content=content, metadata={"title": title})
+            chunks: List[Document] = self.text_splitter.split_documents([raw_document])
 
             if not chunks:
                 logger.warning(f'{title} 문서에서 추출된 청크가 없습니다.')
                 return False
             
             chunk_texts = [chunk.page_content for chunk in chunks]
-            vectors = await self.embedding.embed_documents(chunk_texts)
+            vectors = await self.embedding.aembed_documents(chunk_texts)
 
             db_objects = []
             for i, chunk in enumerate(chunks):
-                db_document = Document(
+                db_document = DBDocument(
                     title=title,
                     content=chunk.page_content,
                     url=url,

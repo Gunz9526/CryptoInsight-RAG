@@ -17,12 +17,12 @@ class ChatService:
     def __init__(self, db: AsyncSession):
         self.retrieval_service = RetrievalService(db)
         
-        self.stock_client = StockSystemClient(base_url=settings.TRADING_SYSTEM_URL)
+        self.stock_client = StockSystemClient()
 
         self.llm = ChatGoogleGenerativeAI(
             model=settings.LLM_MODEL,
             google_api_key=settings.GOOGLE_API_KEY,
-            temperature=0.2
+            temperature=0.1
         )
 
     async def generate_response(self, query: str, symbol: str = None) -> dict:

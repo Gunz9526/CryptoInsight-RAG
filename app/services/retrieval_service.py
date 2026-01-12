@@ -18,7 +18,7 @@ class RetrievalService:
         """
         벡터 유사도 검색을 통해 관련 문서를 검색
         """
-        query_vector = self.embedding_model.embed_query(query)
+        query_vector = await self.embedding_model.aembed_query(query)
 
         stmt = select(Document).order_by(
             Document.embedding.cosine_distance(query_vector)

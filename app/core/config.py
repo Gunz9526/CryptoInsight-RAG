@@ -16,6 +16,9 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str
     POSTGRES_DB: str
 
+    FINNHUB_API_KEY: str
+    REDIS_URL: str
+
     class Config:
         env_file = ".env"
 

@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app.core.config import settings
 from app.api.endpoints import market
 from app.api.endpoints import chat
+from app.api.endpoints import ingest
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
@@ -11,3 +12,4 @@ async def root():
 
 app.include_router(market.router, prefix="/market", tags=["market"])
 app.include_router(chat.router, prefix="/chat", tags=["chat"])
+app.include_router(ingest.router, prefix="/ingest", tags=["ingest"])

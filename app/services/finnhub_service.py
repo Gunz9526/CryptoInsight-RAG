@@ -31,8 +31,10 @@ class FinnhubService:
                     content = news.get('summary', '')
                     url = news.get('url', None)
 
+                    full_text = f"{title}\n\n{content}"
+
                     if content:
-                        success = await ingestion_service.ingest_articles(title, content, url)
+                        success = await ingestion_service.ingest_articles(title, full_text, url)
                         if not success:
                             logger.error(f"{title} 뉴스 기사를 수집하는 데 실패했습니다.")
                     
