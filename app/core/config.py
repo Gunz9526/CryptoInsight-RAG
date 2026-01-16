@@ -5,7 +5,7 @@ class Settings(BaseSettings):
     GOOGLE_API_KEY: str
     DATABASE_URL: str
 
-    EMBEDDING_MODEL : str = "models/text-embedding-004"
+    EMBEDDING_MODEL : str = "models/gemini-embedding-001"
     LLM_MODEL : str = "gemini-3-flash-preview"
 
     #TRADING_SYSTEM_URL: str = "http://host.docker.internal:8000"

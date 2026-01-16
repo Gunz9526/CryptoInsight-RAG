@@ -14,7 +14,7 @@ async def check_market_data(symbol: str):
     ohlcv_data = await client.get_ohlcv(symbol, days=30)
     fundamentals_data = await client.get_fundamentals(symbol)
     
-    if "시스템 오류" in ohlcv_data or "시스템 오류" in fundamentals_data:
+    if "오류" in ohlcv_data or "오류" in fundamentals_data:
         raise HTTPException(status_code=500, detail="트레이딩 시스템과의 통신 중 오류가 발생했습니다.")
     
     return {
